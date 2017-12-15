@@ -26,7 +26,11 @@ lengths += [17, 31, 73, 47, 23]
 end
 
 knot_hash = list.each_slice(16).map do |groups|
-  groups.to_a.reduce(&:^).to_s(16)
+  hex_chars = groups.to_a.reduce(&:^).to_s(16)
+  if hex_chars.size == 1
+    hex_chars = '0' + hex_chars
+  end
+  hex_chars
 end
 
 # 2f8c3d2100fdd57cec130d928b0fd2dd
